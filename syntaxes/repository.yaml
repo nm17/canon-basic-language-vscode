@@ -1,0 +1,75 @@
+keywords:
+  patterns:
+    - name: keyword.control.cbasic
+      match: (?i)\b(if|while|for|return|next|do *while|for|to|else|then|step|extern|until)\b
+    - name: constant.language
+      match: (?i)\b(True|False)\b
+strings:
+  name: string.quoted.double.cbasic
+  begin: '"'
+  end: '"'
+  patterns:
+  - name: constant.character.escape.cbasic
+    match: \\.
+numeric:
+  name: constant.numeric
+  match: (?i)(0x[0-9a-f]+|(?<!\w)\d+)(?!\w)
+
+# Known CBasic functions
+support_cbasic:
+  patterns:
+  - name: support.function.cbasic
+    match: 
+      $expression: '"(" + $params.cb.functions.join("|") + ")"'
+
+# Simple operator rule
+operators:
+  name: keyword.operator
+  match: (<|>|\+|\-|\*|\/|>|<|\&|\|)=?
+
+# Either assignment or equality
+assignment:
+  name: meta.expr
+  match: (?i)(\S+) *(=) *(.+)
+  captures:
+    '1':
+      name: entity.name.variable.cbasic
+    '2':
+      name: keyword.operator.cbasic
+    '3':
+      name: meta.expr
+      patterns:
+      - include: '#comment'
+      - include: '#function_call'
+      - include: '#operators'
+      - include: '#support_cbasic'
+      - include: '#numeric'
+      - include: '#strings'
+      - include: '#keywords'
+function_call:
+  name: meta.call
+  match: (?:([A-Za-z]+)(\.))?([a-zA-Z_]+)(\( *)(.*)( *\))
+  captures:
+    '1':
+      name: support.class
+    '2':
+      name: punctuation.accessor.cbasic
+    '3':
+      name: entity.name.function.cbasic
+      patterns:
+      - include: '#support_cbasic'
+    '4':
+      name: punctuation.definition.parameters.begin.cbasic
+    '5':
+      name: meta.parameters.cbasic
+      patterns:
+      - include: '#operators'
+      - include: '#numeric'
+      - name: variable.parameter.cbasic
+        match: '[a-zA-Z0-9]+'
+      - include: '#strings'
+    '6':
+      name: punctuation.definition.parameters.end.cbasic
+comment:
+  name: comment.line
+  match: "'.*$"

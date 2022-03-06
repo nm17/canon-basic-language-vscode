@@ -1,0 +1,62 @@
+{
+    "name": "canon-basic-language",
+    "displayName": "Canon Basic Language",
+    "description": "Language support for Canon Basic",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": {
+        "name": "nm17",
+        "email": "me@nm17.dev",
+        "url": "https://github.com/nm17"
+    },
+    "repository": "github:nm17/canon-basic-language-vscode",
+    "homepage": "https://github.com/nm17/canon-basic-language-vscode#readme",
+    "bugs": {
+        "url" : "https://github.com/nm17/canon-basic-language-vscode/issues",
+        "email" : "me@nm17.dev"
+    },
+    "publisher": "nm17",
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "scripts": {
+        "vscode:prepublish": "npm run convertYaml",
+        "convertYaml": "node build/ConvertYaml.js"
+    },
+    "devDependencies": {
+        "fs-extra": "^10.0.1",
+        "json-merger": "^1.1.7"
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "cbasic",
+                "aliases": [
+                    "Canon Basic",
+                    "cbasic"
+                ],
+                "extensions": [
+                    ".m"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "cbasic",
+                "scopeName": "source.cbasic",
+                "path": "./out/cbasic.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "cbasic",
+                "path": "./snippets.json"
+            }
+        ]
+    }
+}

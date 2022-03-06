@@ -1,0 +1,33 @@
+---
+- include: '#comment'
+- include: '#function_call'
+- include: '#support_cbasic'
+- include: '#keywords'
+- match: (?i)(sub) (.+)$
+  captures:
+    '1':
+      name: storage.type.function.cbasic
+    '2':
+      patterns:
+      - include: '#function_call'
+- include: '#strings'
+- name: keyword.control.end.cbasic
+  match: (?i:end sub|loop|next|end if|exit sub)
+- name: storage.modifier.cbasic
+  match: (?i)(public|private)
+- name: meta.variable.cbasic
+  match: (?i)(dim) +(.+)
+  captures:
+    '1':
+      name: keyword
+    '2':
+      patterns:
+      - include: '#comment'
+      - include: '#assignment'
+- include: '#operators'
+- include: '#assignment'
+- include: '#numeric'
+- name: keyword.control.cbasic
+  match: (?i)\b(if|while|for|return|next|do *while|for|to|else|then|step|extern|until)\b
+- name: constant.language
+  match: (?i)\b(True|False)\b

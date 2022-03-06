@@ -1,0 +1,29 @@
+
+{
+	"Create Initialize function": {
+		"prefix": "init",
+		"body": [
+			"private sub Initialize()",
+            "    $1",
+            "end sub"
+		],
+		"description": "Create boilerplate Initialize function"
+	},
+    "Create Terminate function": {
+		"prefix": "term",
+		"body": [
+			"private sub Terminate()",
+            "    $1",
+            "end sub"
+		],
+		"description": "Create boilerplate Terminate function"
+	},
+    "Create empry function": {
+        "prefix": "sub",
+        "body": [
+            "private sub ${1:FuncName}($2)",
+            "    $3",
+            "end sub"
+        ]
+    }
+}
