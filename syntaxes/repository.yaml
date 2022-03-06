@@ -20,7 +20,7 @@ support_cbasic:
   patterns:
   - name: support.function.cbasic
     match: 
-      $expression: '"(" + $params.cb.functions.join("|") + ")"'
+      $expression: '"(" + $params.cb.functions.sort(function(a, b){return b.length - a.length;}).join("|") + ")(?=\\()"'
 
 # Simple operator rule
 operators:

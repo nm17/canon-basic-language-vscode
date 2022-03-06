@@ -1,9 +1,7 @@
-# Change Log
+## Unreleased
 
-All notable changes to the "canon-basic-language" extension will be documented in this file.
+## 0.1.0 (2022-03-06)
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Feat
 
-## [Unreleased]
-
-- Initial release
+- initial commit

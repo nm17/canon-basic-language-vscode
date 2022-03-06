@@ -1,7 +1,6 @@
 ---
 - include: '#comment'
 - include: '#function_call'
-- include: '#support_cbasic'
 - include: '#keywords'
 - match: (?i)(sub) (.+)$
   captures:
@@ -26,6 +25,7 @@
       - include: '#assignment'
 - include: '#operators'
 - include: '#assignment'
+- include: '#support_cbasic'
 - include: '#numeric'
 - name: keyword.control.cbasic
   match: (?i)\b(if|while|for|return|next|do *while|for|to|else|then|step|extern|until)\b
